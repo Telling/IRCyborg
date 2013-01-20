@@ -18,6 +18,6 @@ GAPIKEY = ''
 GCUSTOMSEARCHID = ''
 
 # Wunderground.com API details
-WAPIKEY = 'b73331af55fc8f37'
+WAPIKEY = ''
 ```
 And you're good to go!
