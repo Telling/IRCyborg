@@ -16,5 +16,8 @@ CHANNEL = ''
 # Google API details
 GAPIKEY = ''
 GCUSTOMSEARCHID = ''
+
+# Wunderground.com API details
+WAPIKEY = 'b73331af55fc8f37'
 ```
 And you're good to go!

@@ -2,21 +2,25 @@ from settings import NICK, IDENT, SERVER, REALNAME, CHANNEL
 from googleSearch import googleSearch
 from geoLocate import geoLocate
 from imdb import imdbSearch
+from weather import weatherLookup
 import irc
+
 
 # Event listeners
 def handle_state(newstate):
     if newstate == 4:
         conn.send_string('JOIN {0}'.format(CHANNEL))
 
+
 def handle_raw(line):
     print line
 
+
 def handle_parsed(prefix, command, params):
-    if command=='PRIVMSG':
+    if command == 'PRIVMSG':
         if(params[0] == CHANNEL
-            and params[1].startswith('!g')
-            and not params[1].startswith('!geo')):
+                and params[1].startswith('!g')
+                and not params[1].startswith('!geo')):
 
             searchTerm = params[1][3:]
             conn.send_string(
@@ -35,6 +39,12 @@ def handle_parsed(prefix, command, params):
             searchTerm = params[1][6:]
             conn.send_string(
                 'PRIVMSG {0} :'.format(CHANNEL) + imdbSearch(searchTerm)
+            )
+
+        if params[0] == CHANNEL and params[1].startswith('!w'):
+            searchTerm = params[1][3:]
+            conn.send_string(
+                'PRIVMSG {0} :'.format(CHANNEL) + weatherLookup(searchTerm)
             )
 
 

@@ -1,6 +1,6 @@
-import urllib
 import json
 import httplib2
+
 
 def geoLocate(ip):
     apiUrl = 'http://www.freegeoip.net/json/{0}'.format(ip)

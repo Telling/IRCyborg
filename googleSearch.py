@@ -3,6 +3,7 @@ import urllib
 import json
 import httplib2
 
+
 def shortenUrl(url):
     apiUrl = 'https://www.googleapis.com/urlshortener/v1/url?' \
              'key={0}'.format(GAPIKEY)
@@ -13,6 +14,7 @@ def shortenUrl(url):
     headers, response = h.request(apiUrl, 'POST', json.dumps(data), headers)
     result = json.loads(response)
     return result['id']
+
 
 def googleSearch(searchTerm):
     query = urllib.urlencode({'q': searchTerm})
