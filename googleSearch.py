@@ -23,10 +23,12 @@ def googleSearch(searchTerm):
 
     h = httplib2.Http()
     response, content = h.request(apiUrl, 'GET')
-    if(response['status'] != '200'):
+    results = json.loads(content)
+    if response['status'] != '200':
         return 'API returned error code: {0}'.format(response['status'])
+    elif results['searchInformation']['totalResults'] == '0':
+        return 'I found no results for {0}'.format(searchTerm)
     else:
-        results = json.loads(content)
         moreResults = 'https://www.google.com/#hl=da&{0}'.format(query)
         data = results['items']
         searchInfo = results['searchInformation']
