@@ -1,3 +1,4 @@
+ # coding=utf-8
 from settings import WAPIKEY
 from googleSearch import shortenUrl
 import urllib
@@ -14,7 +15,7 @@ def getBestResult(city):
     results = json.loads(unicode(content, errors='replace'))
     if response['status'] != '200':
         return 'API returned error code {0}'.format(response['status'])
-    elif results['RESULTS'] == '':
+    elif results['RESULTS'] == []:
         return 'empty'
     else:
         return results['RESULTS'][0]['l']
